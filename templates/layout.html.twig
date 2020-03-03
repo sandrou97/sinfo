@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% block header %}
+      <header> 
+        <img src="{{ asset('images/cabecerapeque.jpg') }}" alt="cabecera" />
+		    Hoy es {{ "now" | date("m/d/Y") }}
+      </header>
+    {% endblock %}
+
+    {% block nav %}
+      <nav> 
+			  <ul> 
+				  {# <li><a href="{{ path('inicio') }}">INICIO</a></li> 
+				  <li><a href="{{ path('ponencias') }}">PONENCIAS</a></li>
+          <li><a href="{{ path('talleres') }}">TALLERES</a></li>
+				  <li><a href="{{ path('nponencia') }}">PONENCIA++</a></li>
+				  <li><a href="{{ path('ntaller') }}">TALLER++</a></li>
+				  <li><a href="{{ path('login') }}">LOGIN</a></li>
+				  <li><a href="{{ path('nusuario') }}">Nuevo USUARIO</a></li> #}
+
+          <li><a href="{{ path('inicio') }}">INICIO</a></li> 
+				  <li><a href="{{ path('ponencias') }}">PONENCIAS</a></li>
+          <li><a href="{{ path('talleres') }}">TALLERES</a></li>
+				  <li><a href="{{ path('nuevaponencia') }}">PONENCIA++</a></li>
+				  <li><a href="{{ path('nuevotaller') }}">TALLER++</a></li>
+				  <li><a href="">LOGIN</a></li>
+				  <li><a href="">Nuevo USUARIO</a></li>
+			  </ul>
+		  </nav> 
+    {% endblock %}
+
+    {% block main %}
+
+    {% endblock %}
+    
+    {% block footer %}
+        <footer>
+        {% if is_granted('ROLE_USER') %}
+        Usuario logeado como {{ app.user.username }} <a href="{{ path('logout') }}">[Cerrar sesión]</a>
+        {% else %}
+			- DWES 2019/2020 
+      {% endif %}
+		</footer> 
+    {% endblock %}
+
+{% endblock %}

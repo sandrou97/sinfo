@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}                                
+    <h2> LISTA DE TALLERES... </h2>
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th> 
+            <th>Categoría</th>
+            <th>Likes</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for taller in talleres %}
+        <tr>
+            <td>{{taller.id}}</td>
+            <td class="titulo">{{taller.titulota}}</td>
+            <td>{{taller.categoriataller.nombre}}</td>
+            <td>{{taller.liketa}}</td>
+            <td><a href="{{path('likeupta',{'id':taller.id})}}"><img src="{{ asset('images/silikes.png') }}"/></a></td>
+            <td><a href="{{path('likeminusta',{'id':taller.id})}}"><img src="{{ asset('images/nolikes.png') }}"/></a></td>
+            <td><a href="{{path('eliminartaller',{'id':taller.id})}}"><img src="{{ asset('images/eliminar.png') }}"/></a></td>
+            <td><a href="{{path('editartaller',{'id':taller.id})}}">EDITAR</a></td>
+        </tr>
+        {% endfor %}
+        {# for libro in libros %}
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        {% endfor #}
+    </table>
+
+    {# for libro in libros %}
+    <ul>
+    <li><a href="{{ path('ficha_libro',{'isbn':libro.isbn}) }}">{{ libro.titulo }}</a> {% if is_granted('ROLE_ADMIN') %} <a href="{{ path('editar',{'isbn':libro.isbn}) }}">editar</a> <a href="{{ path('eliminar',{'isbn':libro.isbn}) }}">eliminar</a></li>{% endif %}
+    </ul>
+    {% endfor #}
+
+{% endblock %}
